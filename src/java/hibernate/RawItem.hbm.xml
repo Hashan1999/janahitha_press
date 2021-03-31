@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.RawItem" table="raw_item" catalog="janahitha" optimistic-lock="version">
+        <id name="idrawItem" type="java.lang.Integer">
+            <column name="idraw_item" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="brand" class="hibernate.Brand" fetch="select">
+            <column name="brand_idbrand" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="45" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <set name="stocks" table="stock" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="raw_item_idraw_item" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Stock" />
+        </set>
+        <set name="grnItems" table="grn_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="raw_item_idraw_item" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.GrnItem" />
+        </set>
+    </class>
+</hibernate-mapping>

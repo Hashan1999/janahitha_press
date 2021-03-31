@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.OrderItemHasDelivery" table="order_item_has_delivery" catalog="janahitha" optimistic-lock="version">
+        <id name="deliveryItemId" type="java.lang.Integer">
+            <column name="delivery_item_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="delivery" class="hibernate.Delivery" fetch="select">
+            <column name="delivery_iddelivery_note" not-null="true" />
+        </many-to-one>
+        <many-to-one name="orderItem" class="hibernate.OrderItem" fetch="select">
+            <column name="order_item_idinvoice_item" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="int">
+            <column name="qty" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

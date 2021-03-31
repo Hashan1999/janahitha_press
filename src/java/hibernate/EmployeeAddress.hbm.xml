@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.EmployeeAddress" table="employee_address" catalog="janahitha" optimistic-lock="version">
+        <id name="idemployeeAddress" type="java.lang.Integer">
+            <column name="idemployee_address" />
+            <generator class="identity" />
+        </id>
+        <property name="no" type="string">
+            <column name="no" length="45" />
+        </property>
+        <property name="street1" type="string">
+            <column name="street1" length="45" />
+        </property>
+        <property name="street2" type="string">
+            <column name="street2" length="45" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="45" />
+        </property>
+        <set name="employees" table="employee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employee_address_idemployee_address" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Employee" />
+        </set>
+    </class>
+</hibernate-mapping>

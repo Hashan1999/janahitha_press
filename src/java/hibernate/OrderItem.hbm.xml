@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.OrderItem" table="order_item" catalog="janahitha" optimistic-lock="version">
+        <id name="idorderItem" type="java.lang.Integer">
+            <column name="idorder_item" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="order" class="hibernate.Order" fetch="select">
+            <column name="order_idorder" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sellingItems" class="hibernate.SellingItems" fetch="select">
+            <column name="selling_items_iditem" not-null="true" />
+        </many-to-one>
+        <property name="unitPrice" type="java.lang.Double">
+            <column name="unit_price" precision="22" scale="0" />
+        </property>
+        <property name="qty" type="java.lang.Integer">
+            <column name="qty" />
+        </property>
+        <property name="orderItemDescription" type="string">
+            <column name="order_item_description" length="65535" />
+        </property>
+        <set name="orderItemHasDeliveries" table="order_item_has_delivery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="order_item_idinvoice_item" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.OrderItemHasDelivery" />
+        </set>
+    </class>
+</hibernate-mapping>

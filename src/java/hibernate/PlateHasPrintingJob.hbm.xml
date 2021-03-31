@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.PlateHasPrintingJob" table="plate_has_printing_job" catalog="janahitha" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="plate" class="hibernate.Plate" fetch="select">
+            <column name="plate_idplate" not-null="true" />
+        </many-to-one>
+        <many-to-one name="printingJob" class="hibernate.PrintingJob" fetch="select">
+            <column name="printing_job_idprinting_job" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

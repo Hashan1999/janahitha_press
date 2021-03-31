@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Machine" table="machine" catalog="janahitha" optimistic-lock="version">
+        <id name="idmachine" type="java.lang.Integer">
+            <column name="idmachine" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="machineStatus" class="hibernate.MachineStatus" fetch="select">
+            <column name="machine_status" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <set name="printingJobs" table="printing_job" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="machine_idmachine" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.PrintingJob" />
+        </set>
+    </class>
+</hibernate-mapping>

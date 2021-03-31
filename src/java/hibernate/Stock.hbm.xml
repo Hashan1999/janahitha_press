@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Stock" table="stock" catalog="janahitha" optimistic-lock="version">
+        <id name="idstock" type="java.lang.Integer">
+            <column name="idstock" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="grn" class="hibernate.Grn" fetch="select">
+            <column name="grn_idgrn" not-null="true" />
+        </many-to-one>
+        <many-to-one name="rawItem" class="hibernate.RawItem" fetch="select">
+            <column name="raw_item_idraw_item" not-null="true" />
+        </many-to-one>
+        <property name="addedDate" type="string">
+            <column name="added_date" length="45" />
+        </property>
+        <property name="qty" type="java.lang.Integer">
+            <column name="qty" />
+        </property>
+        <property name="status" type="java.lang.Byte">
+            <column name="status" />
+        </property>
+        <set name="stockHasStockOuts" table="stock_has_stock_out" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stock_idstock" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.StockHasStockOut" />
+        </set>
+    </class>
+</hibernate-mapping>

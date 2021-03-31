@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Order" table="order" catalog="janahitha" optimistic-lock="version">
+        <id name="idorder" type="java.lang.Integer">
+            <column name="idorder" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customer" class="hibernate.Customer" fetch="select">
+            <column name="customer_idcustomer" not-null="true" />
+        </many-to-one>
+        <many-to-one name="orderStatus" class="hibernate.OrderStatus" fetch="select">
+            <column name="order_status_idorder_status" not-null="true" />
+        </many-to-one>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+        <property name="subtotal" type="java.lang.Double">
+            <column name="subtotal" precision="22" scale="0" />
+        </property>
+        <property name="discount" type="java.lang.Double">
+            <column name="discount" precision="22" scale="0" />
+        </property>
+        <property name="dueAmount" type="java.lang.Double">
+            <column name="due_amount" precision="22" scale="0" />
+        </property>
+        <property name="deliverDate" type="date">
+            <column name="deliver_date" length="10" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <property name="uniqueIdentifierText" type="string">
+            <column name="`unique_identifier _text`" length="50" not-null="true" />
+        </property>
+        <set name="invoices" table="invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="order_idorder" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Invoice" />
+        </set>
+        <set name="orderItems" table="order_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="order_idorder" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.OrderItem" />
+        </set>
+        <set name="printingJobs" table="printing_job" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="order_idorder" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.PrintingJob" />
+        </set>
+    </class>
+</hibernate-mapping>

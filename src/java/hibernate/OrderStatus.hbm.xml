@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.OrderStatus" table="order_status" catalog="janahitha" optimistic-lock="version">
+        <id name="idorderStatus" type="java.lang.Integer">
+            <column name="idorder_status" />
+            <generator class="identity" />
+        </id>
+        <property name="status" type="string">
+            <column name="status" length="45" />
+        </property>
+        <property name="code" type="java.lang.Integer">
+            <column name="code" />
+        </property>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="order_status_idorder_status" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Order" />
+        </set>
+    </class>
+</hibernate-mapping>

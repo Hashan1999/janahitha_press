@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.PrintingJob" table="printing_job" catalog="janahitha" optimistic-lock="version">
+        <id name="idprintingJob" type="java.lang.Integer">
+            <column name="idprinting_job" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="machine" class="hibernate.Machine" fetch="select">
+            <column name="machine_idmachine" not-null="true" />
+        </many-to-one>
+        <many-to-one name="order" class="hibernate.Order" fetch="select">
+            <column name="order_idorder" not-null="true" />
+        </many-to-one>
+        <many-to-one name="printingJobStatus" class="hibernate.PrintingJobStatus" fetch="select">
+            <column name="status" />
+        </many-to-one>
+        <property name="regDate" type="timestamp">
+            <column name="reg_date" length="19" />
+        </property>
+        <property name="startDate" type="timestamp">
+            <column name="start_date" length="19" />
+        </property>
+        <set name="plateHasPrintingJobs" table="plate_has_printing_job" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="printing_job_idprinting_job" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.PlateHasPrintingJob" />
+        </set>
+    </class>
+</hibernate-mapping>

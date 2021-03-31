@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Attedence" table="attedence" catalog="janahitha" optimistic-lock="version">
+        <id name="idattedence" type="java.lang.Integer">
+            <column name="idattedence" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="employee" class="hibernate.Employee" fetch="select">
+            <column name="employee_idemployee" not-null="true" />
+        </many-to-one>
+        <property name="indate" type="timestamp">
+            <column name="indate" length="19" />
+        </property>
+        <property name="outdate" type="timestamp">
+            <column name="outdate" length="19" />
+        </property>
+        <property name="type" type="java.lang.Integer">
+            <column name="type" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

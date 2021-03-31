@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Grn" table="grn" catalog="janahitha" optimistic-lock="version">
+        <id name="idgrn" type="java.lang.Integer">
+            <column name="idgrn" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="supplier" class="hibernate.Supplier" fetch="select">
+            <column name="supplier_idsupplier" not-null="true" />
+        </many-to-one>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+        <property name="subTotal" type="java.lang.Double">
+            <column name="sub_total" precision="22" scale="0" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <set name="grnItems" table="grn_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="grn_idgrn" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.GrnItem" />
+        </set>
+        <set name="stocks" table="stock" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="grn_idgrn" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Stock" />
+        </set>
+    </class>
+</hibernate-mapping>

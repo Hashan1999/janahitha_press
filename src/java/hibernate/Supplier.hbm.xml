@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Supplier" table="supplier" catalog="janahitha" optimistic-lock="version">
+        <id name="idsupplier" type="java.lang.Integer">
+            <column name="idsupplier" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <property name="contact" type="string">
+            <column name="contact" length="45" />
+        </property>
+        <set name="grns" table="grn" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="supplier_idsupplier" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Grn" />
+        </set>
+    </class>
+</hibernate-mapping>

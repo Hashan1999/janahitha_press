@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Plate" table="plate" catalog="janahitha" optimistic-lock="version">
+        <id name="idplate" type="java.lang.Integer">
+            <column name="idplate" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customer" class="hibernate.Customer" fetch="select">
+            <column name="customer_idcustomer" not-null="true" />
+        </many-to-one>
+        <property name="rackNumber" type="string">
+            <column name="rack_number" length="45" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="plateCount" type="java.lang.Integer">
+            <column name="plate_count" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <set name="plateHasPrintingJobs" table="plate_has_printing_job" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="plate_idplate" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.PlateHasPrintingJob" />
+        </set>
+    </class>
+</hibernate-mapping>

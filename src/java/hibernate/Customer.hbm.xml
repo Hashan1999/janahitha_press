@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.Customer" table="customer" catalog="janahitha" optimistic-lock="version">
+        <id name="idcustomer" type="java.lang.Integer">
+            <column name="idcustomer" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="45" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="45" />
+        </property>
+        <property name="contact" type="string">
+            <column name="contact" length="11" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_idcustomer" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Order" />
+        </set>
+        <set name="plates" table="plate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_idcustomer" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Plate" />
+        </set>
+    </class>
+</hibernate-mapping>

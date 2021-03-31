@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.StockHasStockOut" table="stock_has_stock_out" catalog="janahitha" optimistic-lock="version">
+        <composite-id name="id" class="hibernate.StockHasStockOutId">
+            <key-property name="stockIdstock" type="int">
+                <column name="stock_idstock" />
+            </key-property>
+            <key-property name="stockOutIdstockOutTime" type="int">
+                <column name="stock_out_idstock_out_time" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="stock" class="hibernate.Stock" update="false" insert="false" fetch="select">
+            <column name="stock_idstock" not-null="true" />
+        </many-to-one>
+        <many-to-one name="stockOut" class="hibernate.StockOut" update="false" insert="false" fetch="select">
+            <column name="stock_out_idstock_out_time" not-null="true" />
+        </many-to-one>
+        <property name="stockOutQty" type="java.lang.Integer">
+            <column name="stock_out_qty" />
+        </property>
+    </class>
+</hibernate-mapping>

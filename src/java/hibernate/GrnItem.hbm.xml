@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hibernate.GrnItem" table="grn_item" catalog="janahitha" optimistic-lock="version">
+        <id name="idgrnItem" type="java.lang.Integer">
+            <column name="idgrn_item" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="grn" class="hibernate.Grn" fetch="select">
+            <column name="grn_idgrn" not-null="true" />
+        </many-to-one>
+        <many-to-one name="rawItem" class="hibernate.RawItem" fetch="select">
+            <column name="raw_item_idraw_item" not-null="true" />
+        </many-to-one>
+        <property name="unitPrice" type="java.lang.Double">
+            <column name="unit_price" precision="22" scale="0" />
+        </property>
+        <property name="qty" type="java.lang.Integer">
+            <column name="qty" />
+        </property>
+    </class>
+</hibernate-mapping>
