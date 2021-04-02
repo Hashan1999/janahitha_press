@@ -1,5 +1,5 @@
 package hibernate;
-// Generated Mar 31, 2021 6:04:18 AM by Hibernate Tools 4.3.1
+// Generated Apr 2, 2021 12:14:54 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -24,6 +24,7 @@ public class Order  implements java.io.Serializable {
      private String description;
      private String uniqueIdentifierText;
      private Set invoices = new HashSet(0);
+     private Set deliveries = new HashSet(0);
      private Set orderItems = new HashSet(0);
      private Set printingJobs = new HashSet(0);
 
@@ -36,7 +37,7 @@ public class Order  implements java.io.Serializable {
         this.orderStatus = orderStatus;
         this.uniqueIdentifierText = uniqueIdentifierText;
     }
-    public Order(Customer customer, OrderStatus orderStatus, Date date, Double total, Double subtotal, Double discount, Double dueAmount, Date deliverDate, String description, String uniqueIdentifierText, Set invoices, Set orderItems, Set printingJobs) {
+    public Order(Customer customer, OrderStatus orderStatus, Date date, Double total, Double subtotal, Double discount, Double dueAmount, Date deliverDate, String description, String uniqueIdentifierText, Set invoices, Set deliveries, Set orderItems, Set printingJobs) {
        this.customer = customer;
        this.orderStatus = orderStatus;
        this.date = date;
@@ -48,6 +49,7 @@ public class Order  implements java.io.Serializable {
        this.description = description;
        this.uniqueIdentifierText = uniqueIdentifierText;
        this.invoices = invoices;
+       this.deliveries = deliveries;
        this.orderItems = orderItems;
        this.printingJobs = printingJobs;
     }
@@ -135,6 +137,13 @@ public class Order  implements java.io.Serializable {
     
     public void setInvoices(Set invoices) {
         this.invoices = invoices;
+    }
+    public Set getDeliveries() {
+        return this.deliveries;
+    }
+    
+    public void setDeliveries(Set deliveries) {
+        this.deliveries = deliveries;
     }
     public Set getOrderItems() {
         return this.orderItems;

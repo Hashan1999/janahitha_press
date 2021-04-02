@@ -14,6 +14,7 @@ import hd_model.DeliveryNoteValid;
 import hd_model.hd_validation;
 import hibernate.Customer;
 import hibernate.Delivery;
+import hibernate.DeliveryStatus;
 import hibernate.NewHibernateUtil;
 import hibernate.Order;
 import hibernate.OrderItem;
@@ -69,7 +70,7 @@ public class hd_AddNewDeliveryNote extends HttpServlet {
                 String orderItemJsonArray = "";
 
 
-              
+              Order order = null;
 
                 Enumeration<String> parameterNames = request.getParameterNames();
 
@@ -102,6 +103,7 @@ public class hd_AddNewDeliveryNote extends HttpServlet {
                     
                     for (DeliveryItemBean orderItemBean : jsonOrderItemList) {
                         OrderItem item=(OrderItem) hibernateSession.load(OrderItem.class,orderItemBean.getOrderItemId());
+                        order=item.getOrder();
                         if(item != null && orderItemBean.getQty() != 0){
                             OrderItemHasDelivery  newOrderItem=new OrderItemHasDelivery();
                             newOrderItem.setOrderItem(item);
@@ -125,10 +127,12 @@ public class hd_AddNewDeliveryNote extends HttpServlet {
                     
                         if (orderItemsValid) {
                             transaction=hibernateSession.beginTransaction();
+                             DeliveryStatus status=(DeliveryStatus) hibernateSession.load(DeliveryStatus.class, 1);
                                  Delivery delivery=new Delivery();
                         delivery.setDate(new Date());
                         delivery.setDescription(deliveryNoteDescription);
-                                   
+                        delivery.setOrder(order);
+                                   delivery.setDeliveryStatus(status);
                                  hibernateSession.save(delivery);
                                  transaction.commit();
                                  

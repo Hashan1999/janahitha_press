@@ -6,6 +6,8 @@
 package hd_model;
 
 import hd_bean.DeliveryItemBean;
+import hibernate.Delivery;
+import hibernate.DeliveryStatus;
 import hibernate.Order;
 import hibernate.OrderItem;
 import hibernate.OrderItemHasDelivery;
@@ -23,16 +25,28 @@ public class DeliveryNoteValid {
     public static List<DeliveryItemBean> availableOrderItems(Session session,int orderid){
      
         Order order = (Order) session.load(Order.class, orderid);
+        
+//        DeliveryStatus status=(DeliveryStatus) session.load(DeliveryStatus.class, 1);
+//         List<Delivery> deliveryList=session.createCriteria(Delivery.class)
+//                .add(Restrictions.eq("deliveryStatus", status)).list();
+        
+         
         List<OrderItem> itemList=session.createCriteria(OrderItem.class).add(Restrictions.eq("order", order)).list();
         
         ArrayList<DeliveryItemBean> addDeliveryViewList=new ArrayList<>();
         
                 for (OrderItem orderItem : itemList) {
-        List<OrderItemHasDelivery> deliveryItemList=session.createCriteria(OrderItemHasDelivery.class).add(Restrictions.eq("orderItem", orderItem)).list();
+        List<OrderItemHasDelivery> deliveryItemList=session.createCriteria(OrderItemHasDelivery.class)
+                .add(Restrictions.eq("orderItem", orderItem)).list();
        
             int deliveredQty=0;       
+               boolean valid=true;
             for (OrderItemHasDelivery orderItemHasDelivery : deliveryItemList) {
-                deliveredQty=deliveredQty+orderItemHasDelivery.getQty();
+             
+            if(orderItemHasDelivery.getDelivery().getDeliveryStatus().getCode() != 1){
+                deliveredQty=deliveredQty;
+            }else{
+deliveredQty=deliveredQty+orderItemHasDelivery.getQty();            }    
             }
         if(deliveredQty < orderItem.getQty()){
         DeliveryItemBean item=new DeliveryItemBean();
@@ -61,7 +75,11 @@ public class DeliveryNoteValid {
        
             int deliveredQty=0;       
             for (OrderItemHasDelivery orderItemHasDelivery : deliveryItemList) {
-                deliveredQty=deliveredQty+orderItemHasDelivery.getQty();
+              if(orderItemHasDelivery.getDelivery().getDeliveryStatus().getCode() != 1){
+                deliveredQty=deliveredQty;
+            }else{
+deliveredQty=deliveredQty+orderItemHasDelivery.getQty();        
+            }  
             }
         
             

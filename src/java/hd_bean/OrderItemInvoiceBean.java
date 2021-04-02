@@ -11,12 +11,15 @@ package hd_bean;
  */
 public class OrderItemInvoiceBean {
 
-    public OrderItemInvoiceBean(int id, String product, double unit_price, int qty) {
+    public OrderItemInvoiceBean(int id, String product, double unit_price, int qty, double total) {
         this.id = id;
         this.product = product;
         this.unit_price = unit_price;
         this.qty = qty;
+        this.total = total;
     }
+
+   
  
 
 
@@ -25,7 +28,7 @@ public class OrderItemInvoiceBean {
     
     private double unit_price;
     private int qty;
-    
+    private double total;
 
 
     public int getId() {
@@ -58,7 +61,15 @@ public class OrderItemInvoiceBean {
     }
 
     public void setQty(int qty) {
-        this.qty = qty;
+        this.qty = qty;   }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+
     }
 
 

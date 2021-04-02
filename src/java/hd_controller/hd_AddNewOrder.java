@@ -229,8 +229,7 @@ public class hd_AddNewOrder extends HttpServlet {
                                 hibernateSession.save(orderItem);
                                      transaction.commit();
                             }
-                             
-                                 
+                 
                       //       printInvoice(order,orderItemList,response);    
                             JsonObject obj=new JsonObject();
                             obj.addProperty("id", order.getIdorder());

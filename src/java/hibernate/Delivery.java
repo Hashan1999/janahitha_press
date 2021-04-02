@@ -1,5 +1,5 @@
 package hibernate;
-// Generated Mar 31, 2021 6:04:18 AM by Hibernate Tools 4.3.1
+// Generated Apr 2, 2021 12:14:54 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,6 +13,8 @@ public class Delivery  implements java.io.Serializable {
 
 
      private Integer iddeliveryNote;
+     private DeliveryStatus deliveryStatus;
+     private Order order;
      private Date date;
      private String description;
      private Set orderItemHasDeliveries = new HashSet(0);
@@ -20,7 +22,14 @@ public class Delivery  implements java.io.Serializable {
     public Delivery() {
     }
 
-    public Delivery(Date date, String description, Set orderItemHasDeliveries) {
+	
+    public Delivery(DeliveryStatus deliveryStatus, Order order) {
+        this.deliveryStatus = deliveryStatus;
+        this.order = order;
+    }
+    public Delivery(DeliveryStatus deliveryStatus, Order order, Date date, String description, Set orderItemHasDeliveries) {
+       this.deliveryStatus = deliveryStatus;
+       this.order = order;
        this.date = date;
        this.description = description;
        this.orderItemHasDeliveries = orderItemHasDeliveries;
@@ -32,6 +41,20 @@ public class Delivery  implements java.io.Serializable {
     
     public void setIddeliveryNote(Integer iddeliveryNote) {
         this.iddeliveryNote = iddeliveryNote;
+    }
+    public DeliveryStatus getDeliveryStatus() {
+        return this.deliveryStatus;
+    }
+    
+    public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
+    }
+    public Order getOrder() {
+        return this.order;
+    }
+    
+    public void setOrder(Order order) {
+        this.order = order;
     }
     public Date getDate() {
         return this.date;

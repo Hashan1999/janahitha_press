@@ -1,5 +1,5 @@
 package hibernate;
-// Generated Mar 31, 2021 6:04:18 AM by Hibernate Tools 4.3.1
+// Generated Apr 2, 2021 12:14:54 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,7 +15,6 @@ public class Grn  implements java.io.Serializable {
      private Integer idgrn;
      private Supplier supplier;
      private Double total;
-     private Double subTotal;
      private Date date;
      private Set grnItems = new HashSet(0);
      private Set stocks = new HashSet(0);
@@ -27,10 +26,9 @@ public class Grn  implements java.io.Serializable {
     public Grn(Supplier supplier) {
         this.supplier = supplier;
     }
-    public Grn(Supplier supplier, Double total, Double subTotal, Date date, Set grnItems, Set stocks) {
+    public Grn(Supplier supplier, Double total, Date date, Set grnItems, Set stocks) {
        this.supplier = supplier;
        this.total = total;
-       this.subTotal = subTotal;
        this.date = date;
        this.grnItems = grnItems;
        this.stocks = stocks;
@@ -56,13 +54,6 @@ public class Grn  implements java.io.Serializable {
     
     public void setTotal(Double total) {
         this.total = total;
-    }
-    public Double getSubTotal() {
-        return this.subTotal;
-    }
-    
-    public void setSubTotal(Double subTotal) {
-        this.subTotal = subTotal;
     }
     public Date getDate() {
         return this.date;

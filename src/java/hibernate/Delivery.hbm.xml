@@ -1,13 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 2, 2021 12:14:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="hibernate.Delivery" table="delivery" catalog="janahitha" optimistic-lock="version">
         <id name="iddeliveryNote" type="java.lang.Integer">
             <column name="iddelivery_note" />
             <generator class="identity" />
         </id>
+        <many-to-one name="deliveryStatus" class="hibernate.DeliveryStatus" fetch="select">
+            <column name="iddelivery_status" not-null="true" />
+        </many-to-one>
+        <many-to-one name="order" class="hibernate.Order" fetch="select">
+            <column name="order_idorder" not-null="true" />
+        </many-to-one>
         <property name="date" type="date">
             <column name="date" length="10" />
         </property>

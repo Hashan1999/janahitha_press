@@ -330,7 +330,9 @@ Order o=(Order)hibernateSession.load(Order.class, Integer.parseInt(orderid));
 <div class="x_panel">
 						<div class="x_title row" >
                                                     <div class="col-6"><h2>Order Details</h2></div>	
-                                                    <div class="col-6 align-self-md-end"><a href="addDeliveryNote.jsp?id=<%= o.getIdorder() %>"><button class="btn btn-info btn-sm">Add Delivery Note</button><a></a></div>
+                                                    <div class="col-3"><a href="addDeliveryNote.jsp?id=<%= o.getIdorder() %>"><button class="btn btn-info btn-sm">Add Delivery Note</button></a></div>
+                                                     <div class="col-3"><a href="all_delivery_notes.jsp?id=<%= o.getIdorder() %>"><button class="btn btn-info btn-sm">ALL Delivery Notes For Order </button></a></div>
+                                                      
                                                         
 							<div class="clearfix"></div>
 						</div>

@@ -54,6 +54,7 @@ Contributor(s):
     <mapping resource="hibernate/Brand.hbm.xml"/>
     <mapping resource="hibernate/PlateHasPrintingJob.hbm.xml"/>
     <mapping resource="hibernate/StockHasStockOut.hbm.xml"/>
+    <mapping resource="hibernate/DeliveryStatus.hbm.xml"/>
     <mapping resource="hibernate/GrnItem.hbm.xml"/>
     <mapping resource="hibernate/Machine.hbm.xml"/>
     <mapping resource="hibernate/PrintingJobStatus.hbm.xml"/>

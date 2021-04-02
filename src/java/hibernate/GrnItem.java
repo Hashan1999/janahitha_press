@@ -1,5 +1,5 @@
 package hibernate;
-// Generated Mar 31, 2021 6:04:18 AM by Hibernate Tools 4.3.1
+// Generated Apr 2, 2021 12:14:54 PM by Hibernate Tools 4.3.1
 
 
 
@@ -12,22 +12,19 @@ public class GrnItem  implements java.io.Serializable {
      private Integer idgrnItem;
      private Grn grn;
      private RawItem rawItem;
-     private Double unitPrice;
-     private Integer qty;
+     private double unitPrice;
+     private int qty;
+     private double subTotal;
 
     public GrnItem() {
     }
 
-	
-    public GrnItem(Grn grn, RawItem rawItem) {
-        this.grn = grn;
-        this.rawItem = rawItem;
-    }
-    public GrnItem(Grn grn, RawItem rawItem, Double unitPrice, Integer qty) {
+    public GrnItem(Grn grn, RawItem rawItem, double unitPrice, int qty, double subTotal) {
        this.grn = grn;
        this.rawItem = rawItem;
        this.unitPrice = unitPrice;
        this.qty = qty;
+       this.subTotal = subTotal;
     }
    
     public Integer getIdgrnItem() {
@@ -51,19 +48,26 @@ public class GrnItem  implements java.io.Serializable {
     public void setRawItem(RawItem rawItem) {
         this.rawItem = rawItem;
     }
-    public Double getUnitPrice() {
+    public double getUnitPrice() {
         return this.unitPrice;
     }
     
-    public void setUnitPrice(Double unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
-    public Integer getQty() {
+    public int getQty() {
         return this.qty;
     }
     
-    public void setQty(Integer qty) {
+    public void setQty(int qty) {
         this.qty = qty;
+    }
+    public double getSubTotal() {
+        return this.subTotal;
+    }
+    
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
     }
 
 

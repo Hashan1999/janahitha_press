@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 31, 2021 6:04:21 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 2, 2021 12:14:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="hibernate.User" table="user" catalog="janahitha" optimistic-lock="version">
         <id name="iduser" type="java.lang.Integer">

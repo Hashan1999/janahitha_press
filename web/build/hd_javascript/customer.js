@@ -827,8 +827,8 @@ function confirmOrder() {
         }
 
     };
-    request.open("GET", "hd_PrintInvoice?orderId=" + jsonresponse.contend.id, true);
-    request.send();
+    request2.open("GET", "hd_PrintInvoice?orderId="+ jsonresponse.contend.id, true);
+    request2.send();
         
         
                        
